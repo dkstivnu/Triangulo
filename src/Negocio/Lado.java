@@ -12,14 +12,6 @@ public class Lado {
         this.longitud = calcularLongitud();
     }
 
-    public Punto getPto1() {
-        return pto1;
-    }
-
-    public Punto getPto2() {
-        return pto2;
-    }
-
     public double getLongitud() {
         return longitud;
     }
