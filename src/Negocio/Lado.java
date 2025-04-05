@@ -2,30 +2,22 @@ package Negocio;
 
 public class Lado {
 
-    private Punto vert1;
-    private Punto vert2;
+    private Punto pto1;
+    private Punto pto2;
     private double longitud;
 
-    public Lado(Punto vert1, Punto vert2) {
-        this.vert1 = vert1;
-        this.vert2 = vert2;
+    public Lado(Punto pto1, Punto pto2) {
+        this.pto1 = pto1;
+        this.pto2 = pto2;
         this.longitud = calcularLongitud();
     }
 
-    public Punto getVert1() {
-        return vert1;
+    public Punto getPto1() {
+        return pto1;
     }
 
-    public void setVert1(Punto vert1) {
-        this.vert1 = vert1;
-    }
-
-    public Punto getVert2() {
-        return vert2;
-    }
-
-    public void setVert2(Punto vert2) {
-        this.vert2 = vert2;
+    public Punto getPto2() {
+        return pto2;
     }
 
     public double getLongitud() {
@@ -33,14 +25,10 @@ public class Lado {
     }
 
     public double calcularLongitud() {
-        double dx = vert2.getX() - vert1.getX();
-        double dy = vert2.getY() - vert1.getY();
+        double dx = pto2.getX() - pto1.getX();
+        double dy = pto2.getY() - pto1.getY();
         return Math.round( Math.sqrt(dx*dx+dy*dy) * 100.0 ) /100.0;
         // Se redondea el valor de la longitud conservando dos numeros decimales
     }
 
-    @Override
-    public String toString() {
-        return "Negocio.Lado{" + "vert1=" + vert1 + ", vert2=" + vert2 + ", longitud=" + longitud + '}';
-    }
 }
