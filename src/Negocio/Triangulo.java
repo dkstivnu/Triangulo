@@ -41,16 +41,16 @@ public class Triangulo {
         actualizarTriangulo();
     }
 
-    public Lado getLadoA() {
-        return ladoA;
+    public double getLadoA() {
+        return ladoA.getLongitud();
     }
 
-    public Lado getLadoB() {
-        return ladoB;
+    public double getLadoB() {
+        return ladoB.getLongitud();
     }
 
-    public Lado getLadoC() {
-        return ladoC;
+    public double getLadoC() {
+        return ladoC.getLongitud();
     }
 
     public double getArea() {
