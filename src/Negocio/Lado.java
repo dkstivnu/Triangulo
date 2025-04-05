@@ -1,3 +1,5 @@
+package Negocio;
+
 public class Lado {
 
     private Punto vert1;
@@ -46,6 +48,6 @@ public class Lado {
 
     @Override
     public String toString() {
-        return "Lado{" + "vert1=" + vert1 + ", vert2=" + vert2 + ", longitud=" + longitud + '}';
+        return "Negocio.Lado{" + "vert1=" + vert1 + ", vert2=" + vert2 + ", longitud=" + longitud + '}';
     }
 }

@@ -1,3 +1,5 @@
+package Negocio;
+
 public class Triangulo {
 
     private Punto pt1, pt2, pt3;
@@ -65,7 +67,7 @@ public class Triangulo {
 
     @Override
     public String toString() {
-        return "Triangulo{" +
+        return "Negocio.Triangulo{" +
                 "vert1=" + pt1 +
                 ", vert2=" + pt2 +
                 ", vert3=" + pt3 +

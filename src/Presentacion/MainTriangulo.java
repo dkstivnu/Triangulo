@@ -1,3 +1,8 @@
+package Presentacion;
+
+import Negocio.Lado;
+import Negocio.Punto;
+import Negocio.Triangulo;
 
 public class MainTriangulo {
 

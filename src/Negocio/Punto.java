@@ -1,3 +1,5 @@
+package Negocio;
+
 public class Punto {
 
     private int x;
@@ -31,6 +33,6 @@ public class Punto {
 
     @Override
     public String toString() {
-        return "Punto (" + x + ", "+ y + ')';
+        return "Negocio.Punto (" + x + ", "+ y + ')';
     }
 }
