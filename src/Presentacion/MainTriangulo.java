@@ -11,11 +11,7 @@ public class MainTriangulo {
         Punto vert2 = new Punto(-5,-1);
         Punto vert3 = new Punto(2, -1);
         Triangulo t = new Triangulo(vert1,vert2,vert3);
-        Lado lado1 = new Lado(vert3,vert1);
-        lado1.calcularLongitud();
 
         System.out.println(t);
-
-        System.out.println(lado1);
     }
 }
