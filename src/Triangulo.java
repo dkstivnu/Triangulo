@@ -10,6 +10,12 @@ public class Triangulo {
         this.pt3 = pt3;
         calcularLados();
         this.area = calcularArea(pt1, pt2, pt3);
+        calcularPerimetro();
+
+    }
+
+    private void calcularPerimetro() {
+        perimetro = ladoA.getLongitud() + ladoB.getLongitud() + ladoC.getLongitud();
     }
 
     private double calcularArea(Punto pt1, Punto pt2, Punto pt3) {

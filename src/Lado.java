@@ -31,6 +31,10 @@ public class Lado {
         this.vert2 = vert2;
     }
 
+    public double getLongitud() {
+        return longitud;
+    }
+
     public double calcularLongitud() {
 
         double dx = vert2.getX() - vert1.getX();
