@@ -33,6 +33,6 @@ public class Punto {
 
     @Override
     public String toString() {
-        return "Negocio.Punto (" + x + ", "+ y + ')';
+        return "Punto (" + x + ", "+ y + ')';
     }
 }

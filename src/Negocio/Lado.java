@@ -12,11 +12,6 @@ public class Lado {
         this.longitud = calcularLongitud();
     }
 
-    public Lado() {
-        this.vert1 = new Punto();
-        this.vert2 = new Punto();
-    }
-
     public Punto getVert1() {
         return vert1;
     }
@@ -38,12 +33,10 @@ public class Lado {
     }
 
     public double calcularLongitud() {
-
         double dx = vert2.getX() - vert1.getX();
         double dy = vert2.getY() - vert1.getY();
-        return (double) Math.round(Math.sqrt(dx * dx + dy * dy) * 100.0) /100.0;
+        return Math.round( Math.sqrt(dx*dx+dy*dy) * 100.0 ) /100.0;
         // Se redondea el valor de la longitud conservando dos numeros decimales
-
     }
 
     @Override

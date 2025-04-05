@@ -10,22 +10,8 @@ public class Triangulo {
         this.pt1 = pt1;
         this.pt2 = pt2;
         this.pt3 = pt3;
-        calcularLados();
-        this.area = calcularArea(pt1, pt2, pt3);
-        calcularPerimetro();
-    }
+        actualizarTriangulo();
 
-    private void calcularPerimetro() {
-        perimetro = ladoA.getLongitud() + ladoB.getLongitud() + ladoC.getLongitud();
-    }
-
-    private double calcularArea(Punto pt1, Punto pt2, Punto pt3) {
-        return 0.5 * (Math.abs(
-                (pt1.getX() * (pt2.getY() - pt3.getY())) +
-                (pt2.getX() * (pt3.getY() - pt1.getY())) +
-                (pt3.getX() * (pt1.getY() - pt2.getY()))
-                              )
-                     );
     }
 
     public Triangulo() {
@@ -40,6 +26,7 @@ public class Triangulo {
 
     public void setPt1(Punto pt1) {
         this.pt1 = pt1;
+        actualizarTriangulo();
     }
 
     public Punto getPt2() {
@@ -48,6 +35,7 @@ public class Triangulo {
 
     public void setPt2(Punto pt2) {
         this.pt2 = pt2;
+        actualizarTriangulo();
     }
 
     public Punto getPt3() {
@@ -56,6 +44,27 @@ public class Triangulo {
 
     public void setPt3(Punto pt3) {
         this.pt3 = pt3;
+        actualizarTriangulo();
+    }
+
+    public Lado getLadoA() {
+        return ladoA;
+    }
+
+    public Lado getLadoB() {
+        return ladoB;
+    }
+
+    public Lado getLadoC() {
+        return ladoC;
+    }
+
+    public double getArea() {
+        return area;
+    }
+
+    public double getPerimetro() {
+        return perimetro;
     }
 
     public void calcularLados() {
@@ -65,15 +74,37 @@ public class Triangulo {
 
     }
 
+    private void actualizarTriangulo() {
+        calcularLados();
+        calcularArea();
+        calcularPerimetro();
+    }
+
+    private void calcularPerimetro() {
+        double periAux = ladoA.getLongitud() + ladoB.getLongitud() + ladoC.getLongitud();
+        this.perimetro = Math.round(periAux*100.0)/100.0;
+    }
+
+    private void calcularArea() {
+
+        double area = 0.5 * (Math.abs(
+                (pt1.getX() * (pt2.getY() - pt3.getY())) +
+                        (pt2.getX() * (pt3.getY() - pt1.getY())) +
+                        (pt3.getX() * (pt1.getY() - pt2.getY()))
+        ));
+        area = Math.round(area*100.0)/100.0;
+        this.area = area;
+    }
+
     @Override
     public String toString() {
-        return "Negocio.Triangulo{" +
+        return "Triangulo{" +
                 "vert1=" + pt1 +
                 ", vert2=" + pt2 +
                 ", vert3=" + pt3 +
-                ", ladoA=" + ladoA +
-                ", ladoB=" + ladoB +
-                ", ladoC=" + ladoC +
+                ", ladoA=" + ladoA.getLongitud() +
+                ", ladoB=" + ladoB.getLongitud() +
+                ", ladoC=" + ladoC.getLongitud() +
                 ", area=" + area +
                 ", perimetro=" + perimetro +
                 '}';
