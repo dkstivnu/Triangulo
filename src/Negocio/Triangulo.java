@@ -14,12 +14,6 @@ public class Triangulo {
 
     }
 
-    public Triangulo() {
-        this.pt1 = new Punto();
-        this.pt2 = new Punto();
-        this.pt3 = new Punto();
-    }
-
     public Punto getPt1() {
         return pt1;
     }
