@@ -32,20 +32,18 @@ public class Lado {
     }
 
     public double calcularLongitud() {
-        return Math.sqrt( (vert2.getX() - vert1.getX())^2
-                        + (vert2.getY() - vert1.getY())^2);
+
+        double dx = vert2.getX() - vert1.getX();
+        double dy = vert2.getY() - vert1.getY();
+        return Math.sqrt((dx * dx) + dy * dy);
     }
 
-    public boolean esBase(){
+    public boolean esBase() {
         return (vert1.getY() == vert2.getY()) || (vert1.getX() == vert2.getX());
     }
 
     @Override
     public String toString() {
-        return "Lado{" +
-                "vert1=" + vert1 +
-                ", vert2=" + vert2 +
-                ", longitud=" + longitud +
-                '}';
+        return "Lado{" + "vert1=" + vert1 + ", vert2=" + vert2 + ", longitud=" + longitud + '}';
     }
 }
