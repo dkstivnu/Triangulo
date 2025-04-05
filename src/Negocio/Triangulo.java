@@ -92,16 +92,15 @@ public class Triangulo {
 
     @Override
     public String toString() {
-        return "Triangulo{" +
-                "vert1=" + pt1 +
-                ", vert2=" + pt2 +
-                ", vert3=" + pt3 +
-                ", ladoA=" + ladoA.getLongitud() +
-                ", ladoB=" + ladoB.getLongitud() +
-                ", ladoC=" + ladoC.getLongitud() +
-                ", area=" + area +
-                ", perimetro=" + perimetro +
-                '}';
+        return "\n--- TRIANGULO ---"+
+                "\n1° " + pt1 +
+                "\n2° " + pt2 +
+                "\n3° " + pt3 +
+                "\nL. lado A: " + ladoA.getLongitud() +
+                "\nL. lado B: " + ladoB.getLongitud() +
+                "\nL. lado C: " + ladoC.getLongitud() +
+                "\n Area: " + area +
+                "\n Perimetro: " + perimetro;
     }
 }
 
