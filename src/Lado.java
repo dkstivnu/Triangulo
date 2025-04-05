@@ -44,10 +44,6 @@ public class Lado {
 
     }
 
-    public boolean esBase() {
-        return (vert1.getY() == vert2.getY()) || (vert1.getX() == vert2.getX());
-    }
-
     @Override
     public String toString() {
         return "Lado{" + "vert1=" + vert1 + ", vert2=" + vert2 + ", longitud=" + longitud + '}';

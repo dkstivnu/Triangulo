@@ -11,7 +11,6 @@ public class Triangulo {
         calcularLados();
         this.area = calcularArea(pt1, pt2, pt3);
         calcularPerimetro();
-
     }
 
     private void calcularPerimetro() {
