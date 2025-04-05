@@ -1,14 +1,14 @@
-public class Vertice {
+public class Punto {
 
     private int x;
     private int y;
 
-    public Vertice() {
+    public Punto() {
         this.x = 0;
         this.y = 0;
     }
 
-    public Vertice(int x, int y) {
+    public Punto(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -27,5 +27,10 @@ public class Vertice {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public String toString() {
+        return "Punto (" + x + ", "+ y + ')';
     }
 }
