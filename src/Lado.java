@@ -35,7 +35,9 @@ public class Lado {
 
         double dx = vert2.getX() - vert1.getX();
         double dy = vert2.getY() - vert1.getY();
-        return Math.sqrt((dx * dx) + dy * dy);
+        return (double) Math.round(Math.sqrt(dx * dx + dy * dy) * 100.0) /100.0;
+        // Se redondea el valor de la longitud conservando dos numeros decimales
+
     }
 
     public boolean esBase() {
