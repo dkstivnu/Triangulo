@@ -2,9 +2,9 @@ package Negocio;
 
 public class Lado {
 
-    private Punto pto1;
-    private Punto pto2;
-    private double longitud;
+    private final Punto pto1;
+    private final Punto pto2;
+    private final double longitud;
 
     public Lado(Punto pto1, Punto pto2) {
         this.pto1 = pto1;
