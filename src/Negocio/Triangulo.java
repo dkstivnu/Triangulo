@@ -76,17 +76,16 @@ public class Triangulo {
 
     private void calcularPerimetro() {
         double periAux = ladoA.getLongitud() + ladoB.getLongitud() + ladoC.getLongitud();
-        this.perimetro = Math.round(periAux*100.0)/100.0;
+        this.perimetro = Math.round(periAux * 100.0) / 100.0;
     }
 
     private void calcularArea() {
-
         double area = 0.5 * (Math.abs(
                 (pt1.getX() * (pt2.getY() - pt3.getY())) +
                         (pt2.getX() * (pt3.getY() - pt1.getY())) +
-                        (pt3.getX() * (pt1.getY() - pt2.getY()))
-        ));
-        area = Math.round(area*100.0)/100.0;
+                        (pt3.getX() * (pt1.getY() - pt2.getY()))));
+
+        area = Math.round(area * 100.0) / 100.0;
         this.area = area;
     }
 
