@@ -95,11 +95,11 @@ public class Triangulo {
                 "\n1° " + pt1 +
                 "\n2° " + pt2 +
                 "\n3° " + pt3 +
-                "\nL. lado A: " + ladoA.getLongitud() +
-                "\nL. lado B: " + ladoB.getLongitud() +
-                "\nL. lado C: " + ladoC.getLongitud() +
-                "\n Area: " + area +
-                "\n Perimetro: " + perimetro;
+                "\nL. lado A: " + getLadoA() + " u" +
+                "\nL. lado B: " + getLadoB() + " u" +
+                "\nL. lado C: " + getLadoC() + " u" +
+                "\n Area: " + area + " u²" +
+                "\n Perimetro: " + perimetro + " u";
     }
 }
 
