@@ -65,6 +65,10 @@ public class Triangulo {
         return base;
     }
 
+    public double getAltura() {
+        return altura;
+    }
+
     public void calcularLados() {
         this.ladoA = new Lado(pt1, pt2);
         this.ladoB = new Lado(pt2, pt3);
@@ -166,6 +170,7 @@ public class Triangulo {
                 "\n Perimetro: " + perimetro + " u" +
                 "\n--- TRIANGULO ---";
     }
+
 
 
 }
