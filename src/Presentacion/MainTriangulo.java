@@ -13,5 +13,8 @@ public class MainTriangulo {
         Triangulo t = new Triangulo(vert1,vert2,vert3);
 
         System.out.println(t);
+
+        t.setPt2(new Punto(2,2));
+        System.out.println(t);
     }
 }

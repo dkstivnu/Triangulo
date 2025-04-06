@@ -4,7 +4,7 @@ public class Triangulo {
 
     private Punto pt1, pt2, pt3;
     private Lado ladoA, ladoB, ladoC;
-    private double area, perimetro;
+    private double area, perimetro, base, altura;
 
     public Triangulo(Punto pt1, Punto pt2, Punto pt3) {
         this.pt1 = pt1;
@@ -61,6 +61,10 @@ public class Triangulo {
         return perimetro;
     }
 
+    public double getBase() {
+        return base;
+    }
+
     public void calcularLados() {
         this.ladoA = new Lado(pt1, pt2);
         this.ladoB = new Lado(pt2, pt3);
@@ -72,6 +76,25 @@ public class Triangulo {
         calcularLados();
         calcularArea();
         calcularPerimetro();
+        calcularBase();
+    }
+
+    private void calcularBase() {
+
+    }
+
+    private Lado calcularLadoMasGrande() {
+        Lado ladoMax = ladoA;
+
+        if (ladoB.getLongitud() > ladoMax.getLongitud()) {
+            ladoMax = ladoB;
+        }
+
+        if (ladoC.getLongitud() > ladoMax.getLongitud()) {
+            ladoMax = ladoC;
+        }
+
+        return ladoMax;
     }
 
     private void calcularPerimetro() {
@@ -91,16 +114,19 @@ public class Triangulo {
 
     @Override
     public String toString() {
-        return "\n--- TRIANGULO ---"+
+        return "\n--- TRIANGULO ---" +
                 "\n1° " + pt1 +
                 "\n2° " + pt2 +
                 "\n3° " + pt3 +
-                "\nL. lado A: " + getLadoA() + " u" +
-                "\nL. lado B: " + getLadoB() + " u" +
-                "\nL. lado C: " + getLadoC() + " u" +
+                "\nL. lado A: " + getLadoA() + " u" + "  | " + ladoA.getStringEsBase() +
+                "\nL. lado B: " + getLadoB() + " u" + "  | " + ladoB.getStringEsBase() +
+                "\nL. lado C: " + getLadoC() + " u" + "  | " + ladoC.getStringEsBase() +
                 "\n Area: " + area + " u²" +
-                "\n Perimetro: " + perimetro + " u";
+                "\n Perimetro: " + perimetro + " u" +
+                "\n--- TRIANGULO ---";
     }
+
+
 }
 
 
