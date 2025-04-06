@@ -2,9 +2,13 @@ package Negocio;
 
 public class Triangulo {
 
+    /// Atributos
+
     private Punto pt1, pt2, pt3;
     private Lado ladoA, ladoB, ladoC;
     private double area, perimetro, base, altura;
+
+    /// Constructor parametrizado
 
     public Triangulo(Punto pt1, Punto pt2, Punto pt3) {
         this.pt1 = pt1;
@@ -13,6 +17,8 @@ public class Triangulo {
         actualizarTriangulo();
 
     }
+
+    /// Setters and getters
 
     public Punto getPt1() {
         return pt1;
@@ -41,18 +47,6 @@ public class Triangulo {
         actualizarTriangulo();
     }
 
-    public double getLadoA() {
-        return ladoA.getLongitud();
-    }
-
-    public double getLadoB() {
-        return ladoB.getLongitud();
-    }
-
-    public double getLadoC() {
-        return ladoC.getLongitud();
-    }
-
     public double getArea() {
         return area;
     }
@@ -69,37 +63,56 @@ public class Triangulo {
         return altura;
     }
 
-    public void calcularLados() {
-        this.ladoA = new Lado(pt1, pt2);
-        this.ladoB = new Lado(pt2, pt3);
-        this.ladoC = new Lado(pt3, pt1);
+    /// Metodos propios
 
-    }
-
-    private void actualizarTriangulo() {
+    public void actualizarTriangulo() {
+        // Se modulariza en bloques de codigo para asignar los atributos de forma ordenada
         calcularLados();
         calcularArea();
         calcularPerimetro();
         calcularBase();
-        calcularAltura();
+        calcAltura();
     }
 
-    private void calcularAltura() {
-        this.altura = 2 * (this.area
-                / this.base);
+    public void calcularLados() { // Crea las clases Lado
+        this.ladoA = new Lado(pt1, pt2);
+        this.ladoB = new Lado(pt2, pt3);
+        this.ladoC = new Lado(pt3, pt1);
+    }
+
+    private void calcularArea() {
+        /* El area se calcula con el valor absoluto de la determinante:
+         *           | x₁ y₁ 1 |
+         *  Área = ½ | x₂ y₂ 1 |
+         *           | x₃ y₃ 1 |
+         */
+        double area = 0.5 * Math.abs(
+                            (pt1.getX() * (pt2.getY() - pt3.getY())) +
+                            (pt2.getX() * (pt3.getY() - pt1.getY())) +
+                            (pt3.getX() * (pt1.getY() - pt2.getY())));
+
+        // Se redondea el área con dos decimales
+        area = Math.round(area * 100.0) / 100.0;
+        this.area = area;
     }
 
     private void calcularBase() {
+        // Contador para saber cuántos lados cumplen con la condición de ser base
         int posiblesBases = 0;
-        Lado ladoMax = calcularLadoMasGrande();
 
+        // Obtiene el lado más largo del triángulo para usarlo como base en caso de que no haya lados horizontales o verticales
+        Lado ladoMax = getLadoMax();
+
+        // Cuenta cuántos lados tienen la propiedad esBase = true
+        // Un lado es base cuando es horizontal o vertical (cuando coordenadas X o Y coinciden)
         if (ladoA.getEsBase()) posiblesBases++;
         if (ladoB.getEsBase()) posiblesBases++;
         if (ladoC.getEsBase()) posiblesBases++;
 
-
+        // Dependiendo de cuántos lados pueden ser base, se toma una decisión diferente
         switch (posiblesBases) {
             case 1: {
+                // Si solo hay un lado que puede ser base, ese lado se usa como base del triángulo
                 if (ladoA.getEsBase())
                     this.base = ladoA.getLongitud();
 
@@ -111,40 +124,50 @@ public class Triangulo {
             }
             break;
             case 2:
-                calcularLadoMax(ladoA,ladoB);
-                calcularLadoMax(ladoC,ladoB);
-                calcularLadoMax(ladoA,ladoC);
-
+                // Si hay dos lados que pueden ser base, se selecciona el más largo entre ellos
+                if (ladoA.getEsBase() == ladoB.getEsBase()) {
+                    // Si ladoA y ladoB son posibles bases, se elige el más largo
+                    this.base = Math.max(ladoA.getLongitud(), ladoB.getLongitud());
+                }
+                if (ladoA.getEsBase() == ladoC.getEsBase()) {
+                    // Si ladoA y ladoC son posibles bases, se elige el más largo
+                    this.base = Math.max(ladoA.getLongitud(), ladoC.getLongitud());
+                }
+                if (ladoC.getEsBase() == ladoB.getEsBase()) {
+                    // Si ladoC y ladoB son posibles bases, se elige el más largo
+                    this.base = Math.max(ladoC.getLongitud(), ladoB.getLongitud());
+                }
                 break;
             default:
+                // Si no hay lados horizontales/verticales (posiblesBases = 0)
+                // se usa el lado más largo como base
                 this.base = ladoMax.getLongitud();
                 break;
         }
-
     }
 
-    private Lado calcularLadoMasGrande() {
+    private Lado getLadoMax() {
         Lado ladoMax = ladoA;
 
-        if (ladoB.getLongitud() > ladoMax.getLongitud()) {
-            ladoMax = ladoB;
-        }
+        if (ladoB.getLongitud() > ladoMax.getLongitud()) /* Entonces */ ladoMax = ladoB;
 
-        if (ladoC.getLongitud() > ladoMax.getLongitud()) {
-            ladoMax = ladoC;
-        }
+        if (ladoC.getLongitud() > ladoMax.getLongitud()) /* Entonces */ ladoMax = ladoC;
 
         return ladoMax;
     }
 
-    private void calcularLadoMax(Lado lado1, Lado lado2) {
+    private void calcularLadoMax(Lado lado1, Lado lado2, Lado lado3) {
         if (lado1.getEsBase() == lado2.getEsBase()) {
             if (lado1.getLongitud() > lado2.getLongitud()) {
                 this.base = lado1.getLongitud();
                 lado1.setEsBase(true);
+                lado2.setEsBase(false);
+                lado3.setEsBase(false);
             } else {
                 this.base = lado2.getLongitud();
                 lado2.setEsBase(true);
+                lado3.setEsBase(false);
+                lado1.setEsBase(true);
             }
         }
     }
@@ -154,15 +177,10 @@ public class Triangulo {
         this.perimetro = Math.round(periAux * 100.0) / 100.0;
     }
 
-    private void calcularArea() {
-        double area = 0.5 * (Math.abs(
-                (pt1.getX() * (pt2.getY() - pt3.getY())) +
-                        (pt2.getX() * (pt3.getY() - pt1.getY())) +
-                        (pt3.getX() * (pt1.getY() - pt2.getY()))));
-
-        area = Math.round(area * 100.0) / 100.0;
-        this.area = area;
+    private void calcAltura() {
+        this.altura = 2 * (this.area / this.base);
     }
+
 
     @Override
     public String toString() {
@@ -170,9 +188,9 @@ public class Triangulo {
                 "\n1° " + pt1 +
                 "\n2° " + pt2 +
                 "\n3° " + pt3 +
-                "\nL. lado A: " + getLadoA() + " u" + "  | " + ladoA.getStringEsBase() +
-                "\nL. lado B: " + getLadoB() + " u" + "  | " + ladoB.getStringEsBase() +
-                "\nL. lado C: " + getLadoC() + " u" + "  | " + ladoC.getStringEsBase() +
+                "\nL. lado A: " + ladoA.getLongitud() + " u" + "  | " + ladoA.getStringEsBase() +
+                "\nL. lado B: " + ladoB.getLongitud() + " u" + "  | " + ladoB.getStringEsBase() +
+                "\nL. lado C: " + ladoC.getLongitud() + " u" + "  | " + ladoC.getStringEsBase() +
                 "\n Area: " + area + " u²" +
                 "\n Perimetro: " + perimetro + " u" +
                 "\n--- TRIANGULO ---";
