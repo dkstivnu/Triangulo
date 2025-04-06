@@ -77,9 +77,50 @@ public class Triangulo {
         calcularArea();
         calcularPerimetro();
         calcularBase();
+        calcularAltura();
+    }
+
+    private void calcularAltura() {
+        this.altura = 2 * (this.area
+                        / this.base);
     }
 
     private void calcularBase() {
+        int posiblesBases = 0;
+        Lado ladoMax = calcularLadoMasGrande();
+
+        if (ladoA.getEsBase()) posiblesBases++;
+        if (ladoB.getEsBase()) posiblesBases++;
+        if (ladoC.getEsBase()) posiblesBases++;
+
+
+        switch (posiblesBases) {
+            case 1: {
+                if (ladoA.getEsBase())
+                    this.base = ladoA.getLongitud();
+
+                if (ladoB.getEsBase())
+                    this.base = ladoB.getLongitud();
+
+                if (ladoC.getEsBase())
+                    this.base = ladoC.getLongitud();
+            }
+            break;
+            case 2:
+                if (ladoA.getEsBase() == ladoB.getEsBase()) {
+                    this.base = Math.max(ladoA.getLongitud(), ladoB.getLongitud());
+                }
+                if (ladoA.getEsBase() == ladoC.getEsBase()) {
+                    this.base = Math.max(ladoA.getLongitud(), ladoC.getLongitud());
+                }
+                if (ladoC.getEsBase() == ladoB.getEsBase()) {
+                    this.base = Math.max(ladoC.getLongitud(), ladoB.getLongitud());
+                }
+                break;
+            default:
+                this.base = ladoMax.getLongitud();
+                break;
+        }
 
     }
 
