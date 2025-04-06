@@ -86,7 +86,7 @@ public class Triangulo {
 
     private void calcularAltura() {
         this.altura = 2 * (this.area
-                        / this.base);
+                / this.base);
     }
 
     private void calcularBase() {
@@ -111,15 +111,10 @@ public class Triangulo {
             }
             break;
             case 2:
-                if (ladoA.getEsBase() == ladoB.getEsBase()) {
-                    this.base = Math.max(ladoA.getLongitud(), ladoB.getLongitud());
-                }
-                if (ladoA.getEsBase() == ladoC.getEsBase()) {
-                    this.base = Math.max(ladoA.getLongitud(), ladoC.getLongitud());
-                }
-                if (ladoC.getEsBase() == ladoB.getEsBase()) {
-                    this.base = Math.max(ladoC.getLongitud(), ladoB.getLongitud());
-                }
+                calcularLadoMax(ladoA,ladoB);
+                calcularLadoMax(ladoC,ladoB);
+                calcularLadoMax(ladoA,ladoC);
+
                 break;
             default:
                 this.base = ladoMax.getLongitud();
@@ -140,6 +135,18 @@ public class Triangulo {
         }
 
         return ladoMax;
+    }
+
+    private void calcularLadoMax(Lado lado1, Lado lado2) {
+        if (lado1.getEsBase() == lado2.getEsBase()) {
+            if (lado1.getLongitud() > lado2.getLongitud()) {
+                this.base = lado1.getLongitud();
+                lado1.setEsBase(true);
+            } else {
+                this.base = lado2.getLongitud();
+                lado2.setEsBase(true);
+            }
+        }
     }
 
     private void calcularPerimetro() {
@@ -170,7 +177,6 @@ public class Triangulo {
                 "\n Perimetro: " + perimetro + " u" +
                 "\n--- TRIANGULO ---";
     }
-
 
 
 }
