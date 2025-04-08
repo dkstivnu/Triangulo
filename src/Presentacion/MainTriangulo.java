@@ -39,9 +39,10 @@ public class MainTriangulo {
 
                         if (validarPuntos(pto1, pto2, pto3)) {
                             puntosInvalidos = false;
+                            t = new Triangulo(pto1,pto2,pto3);
                         } else {
                             puntosInvalidos = true;
-                            System.out.println("Los tres puntos no forman un triangulo rectangulo, ingresalos nuevamente.");
+                            System.out.println("Los tres puntos no forman un triangulo , ingresalos nuevamente.");
                         }
                     } while (puntosInvalidos);
                     break;
@@ -108,22 +109,16 @@ public class MainTriangulo {
                             switch (opcionMenu) {
                                 case 1: {
                                     System.out.println("Ingrese las coordenadas del primer punto");
-                                    pto1.setX(obtenerX(sc));
-                                    pto1.setY(obtenerY(sc));
-                                    t.setPt1(pto1);
+                                    t.setPt1(new Punto(obtenerX(sc), obtenerY(sc)));
                                 }
                                 break;
                                 case 2:
                                     System.out.println("Ingrese las coordenadas del segundo punto");
-                                    pto2.setX(obtenerX(sc));
-                                    pto2.setY(obtenerY(sc));
-                                    t.setPt2(pto2);
+                                    t.setPt2(new Punto(obtenerX(sc), obtenerY(sc)));
                                     break;
                                 case 3:
                                     System.out.println("Ingrese las coordenadas del tercer punto");
-                                    pto3.setX(obtenerX(sc));
-                                    pto3.setY(obtenerY(sc));
-                                    t.setPt3(pto3);
+                                    t.setPt3(new Punto(obtenerX(sc), obtenerY(sc)));
                                     break;
                                 default:
                                     System.out.println("Opcion no valida");
@@ -136,7 +131,7 @@ public class MainTriangulo {
                     System.out.println("Opcion no valida");
                 }
             }
-        } while (opcion != 4);
+        } while (opcion != 5);
     }
 
     private static void imprimirMenuPunto(Triangulo t) {
@@ -144,7 +139,7 @@ public class MainTriangulo {
         System.out.println("1. " + t.getPt1().toString());
         System.out.println("2. " + t.getPt2().toString());
         System.out.println("3. " + t.getPt3().toString());
-        System.out.println("4. Salir");
+        System.out.println("0. Salir");
     }
 
     private static void imprimirMenuBase(Triangulo t) {
@@ -152,7 +147,7 @@ public class MainTriangulo {
         System.out.println("1. Lado A :" + t.getLadoA().toString());
         System.out.println("2. Lado B :" + t.getLadoB().toString());
         System.out.println("3. Lado C :" + t.getLadoC().toString());
-        System.out.println("4. Salir");
+        System.out.println("0. Salir");
     }
 
     private static boolean validarPuntos(Punto pto1, Punto pto2, Punto pto3) {

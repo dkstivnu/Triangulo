@@ -138,7 +138,7 @@ public class Triangulo {
                 elegirBaseMasGrande(ladoA, ladoB, ladoC);
 
                 // Si ladoA y ladoC son posibles bases, se elige el más largo
-                elegirBaseMasGrande(ladoA, ladoB, ladoC);
+                elegirBaseMasGrande(ladoA, ladoC, ladoB);
 
                 // Si ladoC y ladoB son posibles bases, se elige el más largo
                 elegirBaseMasGrande(ladoC, ladoB, ladoA);
@@ -171,7 +171,7 @@ public class Triangulo {
                 this.base = lado2.getLongitud();
                 lado2.setEsBase(true);
                 lado3.setEsBase(false);
-                lado1.setEsBase(true);
+                lado1.setEsBase(false);
             }
         }
     }
