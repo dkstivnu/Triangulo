@@ -134,14 +134,7 @@ public class Triangulo {
                 // Si hay dos lados que pueden ser base(Como en un triangulo rectangulo),
                 // se selecciona el más largo entre ellos
 
-                // Si ladoA y ladoB son posibles bases, se elige el más largo
-                elegirBaseMasGrande(ladoA, ladoB, ladoC);
-
-                // Si ladoA y ladoC son posibles bases, se elige el más largo
-                elegirBaseMasGrande(ladoA, ladoC, ladoB);
-
-                // Si ladoC y ladoB son posibles bases, se elige el más largo
-                elegirBaseMasGrande(ladoC, ladoB, ladoA);
+                elegirBaseMasGrande();
 
                 break;
             default:
@@ -160,19 +153,34 @@ public class Triangulo {
         }
     }
 
-    public void elegirBaseMasGrande(Lado lado1, Lado lado2, Lado lado3) {
-        if (lado1.getEsBase() == lado2.getEsBase()) {
-            if (lado1.getLongitud() > lado2.getLongitud()) {
-                this.base = lado1.getLongitud();
-                lado1.setEsBase(true);
-                lado2.setEsBase(false);
-                lado3.setEsBase(false);
-            } else {
-                this.base = lado2.getLongitud();
-                lado2.setEsBase(true);
-                lado3.setEsBase(false);
-                lado1.setEsBase(false);
-            }
+    public void elegirBaseMasGrande() {
+        // Reiniciar todos los lados
+        ladoA.setEsBase(false);
+        ladoB.setEsBase(false);
+        ladoC.setEsBase(false);
+
+        // Encontrar el lado más largo entre los que son horizontales o verticales
+        Lado ladoMasLargo = null;
+        double longitudMaxima = 0;
+
+        if (ladoA.getEsBase() && ladoA.getLongitud() > longitudMaxima) {
+            ladoMasLargo = ladoA;
+            longitudMaxima = ladoA.getLongitud();
+        }
+
+        if (ladoB.getEsBase() && ladoB.getLongitud() > longitudMaxima) {
+            ladoMasLargo = ladoB;
+            longitudMaxima = ladoB.getLongitud();
+        }
+
+        if (ladoC.getEsBase() && ladoC.getLongitud() > longitudMaxima) {
+            ladoMasLargo = ladoC;
+        }
+
+        // Si se encontró un lado base, establecerlo como la base
+        if (ladoMasLargo != null) {
+            ladoMasLargo.setEsBase(true);
+            this.base = ladoMasLargo.getLongitud();
         }
     }
 
