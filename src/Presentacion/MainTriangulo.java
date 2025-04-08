@@ -11,8 +11,10 @@ public class MainTriangulo {
 
         Scanner sc = new Scanner(System.in);
 
-        Punto pto1 = null, pto2 = null, pto3 = null;
-        Triangulo t = null;
+        Punto pto1 = new Punto(0, 0),
+                pto2 = new Punto(0, 0),
+                pto3 = new Punto(0, 0);
+        Triangulo t = new Triangulo(pto1,pto2,pto3);
         boolean puntosInvalidos = true;
 
         int opcion;
@@ -47,7 +49,7 @@ public class MainTriangulo {
                     if (puntosInvalidos) {
                         System.out.println("Debes ingresar los puntos de un triangulo para designar la base.");
                     } else {
-                        assert t != null;
+
                         int opcionMenu;
 
                         do {
@@ -88,7 +90,10 @@ public class MainTriangulo {
                 case 3: {
                     if (puntosInvalidos) {
                         System.out.println("Debes ingresar los puntos de un triangulo para imprimir su info.");
-                    } else imprimirTriangulo(t);
+                    } else {
+
+                        System.out.println(t);
+                    }
                 }
                 break;
                 case 4:
@@ -191,7 +196,4 @@ public class MainTriangulo {
         System.out.println("----- MENU -----");
     }
 
-    public static void imprimirTriangulo(Triangulo t) {
-        System.out.println(t.toString());
-    }
 }
