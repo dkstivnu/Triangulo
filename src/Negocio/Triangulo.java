@@ -63,6 +63,16 @@ public class Triangulo {
         return altura;
     }
 
+    public Lado getLadoA() {
+        return ladoA;
+    }
+    public Lado getLadoB() {
+        return ladoB;
+    }
+    public Lado getLadoC() {
+        return ladoC;
+    }
+
     /// Metodos propios
 
     public void actualizarTriangulo() {
