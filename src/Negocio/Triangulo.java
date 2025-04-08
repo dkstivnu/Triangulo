@@ -125,18 +125,16 @@ public class Triangulo {
             break;
             case 2:
                 // Si hay dos lados que pueden ser base, se selecciona el más largo entre ellos
-                if (ladoA.getEsBase() == ladoB.getEsBase()) {
+
                     // Si ladoA y ladoB son posibles bases, se elige el más largo
-                    this.base = Math.max(ladoA.getLongitud(), ladoB.getLongitud());
-                }
-                if (ladoA.getEsBase() == ladoC.getEsBase()) {
+                elegirBaseMasGrande(ladoA,ladoB,ladoC);
+
                     // Si ladoA y ladoC son posibles bases, se elige el más largo
-                    this.base = Math.max(ladoA.getLongitud(), ladoC.getLongitud());
-                }
-                if (ladoC.getEsBase() == ladoB.getEsBase()) {
+                elegirBaseMasGrande(ladoA,ladoB, ladoC);
+
                     // Si ladoC y ladoB son posibles bases, se elige el más largo
-                    this.base = Math.max(ladoC.getLongitud(), ladoB.getLongitud());
-                }
+                elegirBaseMasGrande(ladoC, ladoB, ladoA);
+
                 break;
             default:
                 // Si no hay lados horizontales/verticales (posiblesBases = 0)
@@ -156,7 +154,7 @@ public class Triangulo {
         return ladoMax;
     }
 
-    private void calcularLadoMax(Lado lado1, Lado lado2, Lado lado3) {
+    private void elegirBaseMasGrande(Lado lado1, Lado lado2, Lado lado3) {
         if (lado1.getEsBase() == lado2.getEsBase()) {
             if (lado1.getLongitud() > lado2.getLongitud()) {
                 this.base = lado1.getLongitud();
