@@ -87,9 +87,9 @@ public class Triangulo {
          *           | x₃ y₃ 1 |
          */
         double area = 0.5 * Math.abs(
-                            (pt1.getX() * (pt2.getY() - pt3.getY())) +
-                            (pt2.getX() * (pt3.getY() - pt1.getY())) +
-                            (pt3.getX() * (pt1.getY() - pt2.getY())));
+                (pt1.getX() * (pt2.getY() - pt3.getY())) +
+                        (pt2.getX() * (pt3.getY() - pt1.getY())) +
+                        (pt3.getX() * (pt1.getY() - pt2.getY())));
 
         // Se redondea el área con dos decimales
         area = Math.round(area * 100.0) / 100.0;
@@ -99,9 +99,6 @@ public class Triangulo {
     private void calcularBase() {
         // Contador para saber cuántos lados cumplen con la condición de ser base
         int posiblesBases = 0;
-
-        // Obtiene el lado más largo del triángulo para usarlo como base en caso de que no haya lados horizontales o verticales
-        Lado ladoMax = getLadoMax();
 
         // Cuenta cuántos lados tienen la propiedad esBase = true
         // Un lado es base cuando es horizontal o vertical
@@ -124,34 +121,33 @@ public class Triangulo {
             }
             break;
             case 2:
-                // Si hay dos lados que pueden ser base, se selecciona el más largo entre ellos
+                // Si hay dos lados que pueden ser base(Como en un triangulo rectangulo),
+                // se selecciona el más largo entre ellos
 
-                    // Si ladoA y ladoB son posibles bases, se elige el más largo
-                elegirBaseMasGrande(ladoA,ladoB,ladoC);
+                // Si ladoA y ladoB son posibles bases, se elige el más largo
+                elegirBaseMasGrande(ladoA, ladoB, ladoC);
 
-                    // Si ladoA y ladoC son posibles bases, se elige el más largo
-                elegirBaseMasGrande(ladoA,ladoB, ladoC);
+                // Si ladoA y ladoC son posibles bases, se elige el más largo
+                elegirBaseMasGrande(ladoA, ladoB, ladoC);
 
-                    // Si ladoC y ladoB son posibles bases, se elige el más largo
+                // Si ladoC y ladoB son posibles bases, se elige el más largo
                 elegirBaseMasGrande(ladoC, ladoB, ladoA);
 
                 break;
             default:
                 // Si no hay lados horizontales/verticales (posiblesBases = 0)
                 // se usa el lado más largo como base
+                Lado ladoMax = ladoA;
+
+                if (ladoB.getLongitud() > ladoMax.getLongitud()) /* Entonces */ ladoMax = ladoB;
+
+                if (ladoC.getLongitud() > ladoMax.getLongitud()) /* Entonces */ ladoMax = ladoC;
+
                 this.base = ladoMax.getLongitud();
+                ladoMax.setEsBase(true);
+
                 break;
         }
-    }
-
-    private Lado getLadoMax() {
-        Lado ladoMax = ladoA;
-
-        if (ladoB.getLongitud() > ladoMax.getLongitud()) /* Entonces */ ladoMax = ladoB;
-
-        if (ladoC.getLongitud() > ladoMax.getLongitud()) /* Entonces */ ladoMax = ladoC;
-
-        return ladoMax;
     }
 
     private void elegirBaseMasGrande(Lado lado1, Lado lado2, Lado lado3) {
@@ -172,11 +168,15 @@ public class Triangulo {
 
     private void calcularPerimetro() {
         double periAux = ladoA.getLongitud() + ladoB.getLongitud() + ladoC.getLongitud();
+
+        //Se redondea el perímetro con dos decimales
         this.perimetro = Math.round(periAux * 100.0) / 100.0;
     }
 
     private void calcAltura() {
-        this.altura = 2 * (this.area / this.base);
+        double altura = 2 * (this.area / this.base);
+        altura = Math.round(altura * 100.0) /100.0;
+        this.altura = altura;
     }
 
 
@@ -191,6 +191,7 @@ public class Triangulo {
                 "\nL. lado C: " + ladoC.getLongitud() + " u" + "  | " + ladoC.getStringEsBase() +
                 "\n Area: " + area + " u²" +
                 "\n Perimetro: " + perimetro + " u" +
+                "\n Altura: " + altura +" u"+
                 "\n--- TRIANGULO ---";
     }
 
