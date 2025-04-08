@@ -104,7 +104,7 @@ public class Triangulo {
         Lado ladoMax = getLadoMax();
 
         // Cuenta cuántos lados tienen la propiedad esBase = true
-        // Un lado es base cuando es horizontal o vertical (cuando coordenadas X o Y coinciden)
+        // Un lado es base cuando es horizontal o vertical
         if (ladoA.getEsBase()) posiblesBases++;
         if (ladoB.getEsBase()) posiblesBases++;
         if (ladoC.getEsBase()) posiblesBases++;
