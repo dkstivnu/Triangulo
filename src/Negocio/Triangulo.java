@@ -90,7 +90,7 @@ public class Triangulo {
         this.ladoC = new Lado(pt3, pt1);
     }
 
-    private void calcularArea() {
+    public void calcularArea() {
         /* El area se calcula con el valor absoluto de la determinante:
          *           | x₁ y₁ 1 |
          *  Área = ½ | x₂ y₂ 1 |
@@ -106,7 +106,7 @@ public class Triangulo {
         this.area = area;
     }
 
-    private void calcularBase() {
+    public void calcularBase() {
         // Contador para saber cuántos lados cumplen con la condición de ser base
         int posiblesBases = 0;
 
@@ -160,7 +160,7 @@ public class Triangulo {
         }
     }
 
-    private void elegirBaseMasGrande(Lado lado1, Lado lado2, Lado lado3) {
+    public void elegirBaseMasGrande(Lado lado1, Lado lado2, Lado lado3) {
         if (lado1.getEsBase() == lado2.getEsBase()) {
             if (lado1.getLongitud() > lado2.getLongitud()) {
                 this.base = lado1.getLongitud();
@@ -176,14 +176,14 @@ public class Triangulo {
         }
     }
 
-    private void calcularPerimetro() {
+    public void calcularPerimetro() {
         double periAux = ladoA.getLongitud() + ladoB.getLongitud() + ladoC.getLongitud();
 
         //Se redondea el perímetro con dos decimales
         this.perimetro = Math.round(periAux * 100.0) / 100.0;
     }
 
-    private void calcAltura() {
+    public void calcAltura() {
         double altura = 2 * (this.area / this.base);
         altura = Math.round(altura * 100.0) /100.0;
         this.altura = altura;
