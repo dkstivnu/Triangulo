@@ -171,7 +171,7 @@ public class Triangulo {
                 this.base = lado2.getLongitud();
                 lado2.setEsBase(true);
                 lado3.setEsBase(false);
-                lado1.setEsBase(true);
+                lado1.setEsBase(false);
             }
         }
     }
