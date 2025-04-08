@@ -62,4 +62,9 @@ public class Lado {
         // Se redondea el valor de la longitud conservando dos numeros decimales
     }
 
+    @Override
+    public String toString() {
+        return pto1.toString() + " -> " + pto2.toString();
+    }
+
 }
