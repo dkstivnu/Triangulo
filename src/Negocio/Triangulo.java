@@ -59,6 +59,10 @@ public class Triangulo {
         return base;
     }
 
+    public void setBase(double base) {
+        this.base = base;
+    }
+
     public double getAltura() {
         return altura;
     }
