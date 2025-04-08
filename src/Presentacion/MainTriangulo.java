@@ -63,7 +63,10 @@ public class MainTriangulo {
                                     t.getLadoB().setEsBase(false);
                                     t.getLadoC().setEsBase(false);
 
+                                    t.setBase(t.getLadoA().getLongitud());
                                     t.calcAltura();
+                                    opcionMenu = 0;
+
                                 }
                                 break;
                                 case 2:
@@ -71,14 +74,18 @@ public class MainTriangulo {
                                     t.getLadoA().setEsBase(false);
                                     t.getLadoC().setEsBase(false);
 
+                                    t.setBase(t.getLadoB().getLongitud());
                                     t.calcAltura();
+                                    opcionMenu = 0;
                                     break;
                                 case 3:
                                     t.getLadoC().setEsBase(true);
                                     t.getLadoB().setEsBase(false);
                                     t.getLadoA().setEsBase(false);
 
+                                    t.setBase(t.getLadoC().getLongitud());
                                     t.calcAltura();
+                                    opcionMenu = 0;
                                     break;
                                 default:
                                     System.out.println("Opcion no valida");
@@ -106,10 +113,6 @@ public class MainTriangulo {
                             imprimirMenuPunto(t);
                             opcionMenu = sc.nextInt();
 
-                            Punto puntoOriginal1 = new Punto(t.getPt1().getX(), t.getPt1().getY());
-                            Punto puntoOriginal2 = new Punto(t.getPt2().getX(), t.getPt2().getY());
-                            Punto puntoOriginal3 = new Punto(t.getPt3().getX(), t.getPt3().getY());
-
                             switch (opcionMenu) {
                                 case 1: {
                                     System.out.println("Ingrese las coordenadas del primer punto");
@@ -118,23 +121,25 @@ public class MainTriangulo {
                                     // Validamos que el nuevo conjunto de puntos forme un triángulo
                                     if (validarPuntos(nuevoPunto, t.getPt2(), t.getPt3())) {
                                         t.setPt1(nuevoPunto);
+                                        opcionMenu = 0;
                                     } else {
                                         System.out.println("Los puntos no forman un triángulo válido. Se mantendrá el punto original.");
                                     }
                                 }
                                 break;
-                                case 2:{
+                                case 2: {
                                     System.out.println("Ingrese las coordenadas del primer punto");
                                     Punto nuevoPunto = new Punto(obtenerX(sc), obtenerY(sc));
 
                                     // Validar que el nuevo conjunto de puntos forme un triángulo
                                     if (validarPuntos(t.getPt1(), nuevoPunto, t.getPt3())) {
                                         t.setPt2(nuevoPunto);
+                                        opcionMenu = 0;
                                     } else {
                                         System.out.println("Los puntos no forman un triángulo válido. Se mantendrá el punto original.");
                                     }
                                 }
-                                    break;
+                                break;
                                 case 3: {
                                     System.out.println("Ingrese las coordenadas del primer punto");
                                     Punto nuevoPunto = new Punto(obtenerX(sc), obtenerY(sc));
@@ -142,18 +147,19 @@ public class MainTriangulo {
                                     // Validar que el nuevo conjunto de puntos forme un triángulo
                                     if (validarPuntos(t.getPt1(), t.getPt2(), nuevoPunto)) {
                                         t.setPt3(nuevoPunto);
+                                        opcionMenu = 0;
                                     } else {
                                         System.out.println("Los puntos no forman un triángulo válido. Se mantendrá el punto original.");
                                     }
                                 }
-                                    break;
+                                break;
                                 default:
                                     System.out.println("Opcion no valida");
                                     break;
                             }
 
 
-                        } while (opcionMenu != 0 );
+                        } while (opcionMenu != 0);
                     }
                     break;
                 default: {
@@ -183,8 +189,8 @@ public class MainTriangulo {
         // Comprobamos que los puntos no sean colineales entre ellos
         // también comprobamos que los puntos no sean iguales entre sí.
         if ((pto1.getX() == pto2.getX() && pto1.getY() == pto2.getY()) ||
-            (pto2.getX() == pto3.getX() && pto2.getY() == pto3.getY()) ||
-            (pto3.getX() == pto1.getX() && pto3.getY() == pto1.getY())) {
+                (pto2.getX() == pto3.getX() && pto2.getY() == pto3.getY()) ||
+                (pto3.getX() == pto1.getX() && pto3.getY() == pto1.getY())) {
             return false;
         } else {
             // Nos preparamos para calcular las pendientes de los segmentos del triángulo
